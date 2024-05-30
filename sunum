@@ -1,0 +1,111 @@
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+
+prs = Presentation()
+
+title_slide_layout = prs.slides.add_slide(prs.slide_layouts[0])
+content_slide_layout = prs.slides.add_slide(prs.slide_layouts[1])
+
+def set_font(text_frame, font_name, font_size, bold=False, color=None):
+    for paragraph in text_frame.paragraphs:
+        for run in paragraph.runs:
+            run.font.name = font_name
+            run.font.size = font_size
+            run.font.bold = bold
+            if color:
+                run.font.color.rgb = color
+
+# Title Slide
+slide = prs.slides.add_slide(title_slide_layout)
+title = slide.shapes.title
+subtitle = slide.placeholders[1]
+
+title.text = "Alova Farm"
+subtitle.text = "Otel ve Pastaneler İçin Özel Ürünler"
+set_font(title.text_frame, 'Poppins Bold', Pt(44), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+set_font(subtitle.text_frame, 'Poppins Regular', Pt(24), color=RGBColor(0x66, 0x2D, 0x91))
+
+# Add 'Hikayemiz' Slide
+slide = prs.slides.add_slide(content_slide_layout)
+title = slide.shapes.title
+title.text = "Hikayemiz"
+set_font(title.text_frame, 'Poppins Bold', Pt(32), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+content = slide.placeholders[1].text = (
+    "Hızlı şehirleşme sonucunda, gıda ve tarımsal ürünlerle bağını koparan insanoğlu; "
+    "doğada ilaç niyetine bulunan besinlerden faydalanamaz oldu. Belirli besinlerden almamız gereken vitamin, mineral, "
+    "antosiyanin ve antioksidan gibi besin öğelerini yeterince alamamak, bizleri besin destek hapları kullanmaya yöneltti.\n\n"
+    "Bizler, profesyonel iş yaşamında geçirdiğimiz uzun yılların sonunda orman meyvelerinin anavatanlarından birisi olan "
+    "Yalova’ya yerleşerek tarım ile uğraşmaya karar verdik. Alova Farm’ı çiftliğimizin adını aldığı Yalova Altınova’da kurduk. "
+    "Yalova, tarihi, kültürü, iklimi, doğal bitki örtüsüyle çok değerli ve verimli bir bölgedir. "
+    "‘’Etrafınıza bakın ve doğal olarak yetişen ne görüyorsanız, onu yetiştirin’’ diyen ziraat uzmanımızı dinleyerek, orman meyveleri çiftliğimizi kurduk.\n\n"
+    "Alova Farm’ ın bulunduğu Çobankale Mevkii, tarihi İpek Yolu’nun Anadolu’daki en kritik duraklarından biridir. Tarih boyunca, "
+    "kafileler bu yol üzerinden ticaret yapmış ve gıda taşımışlardır. Alova Farm ürünlerinin buradan çıkarak, ülkemizin her yerine ve dünyaya ulaşmasını arzu etmekteyiz.\n\n"
+    "Ülke olarak, dünyanın en gözde orman meyveleri merkezlerinden biri olabilmek için var gücümüzle, doğa şartlarına uyumlu olarak, "
+    "en modern tarım teknolojilerinden faydalanarak çalışıyoruz ve üretiyoruz. Amacımız, yaban mersini gibi faydalı, ilaç gibi bir meyveyi erişilebilir hale getirmektir.\n\n"
+    "Akıllı sulama ve gübreleme yöntemleriyle, ürün israfını sıfırlayarak, üretim maliyetlerini optimize ederek, çevreci paketleme eşliğinde "
+    "tüketicilerin sağlık deposu meyvelere rahatlıkla ulaşmalarını sağlamaya çalışıyoruz.\n\n"
+    "Üretime çilek ile başladık. 2020 yılında yaban mersini ile devam ettik. Ürün yelpazemize 2021 yılında böğürtlen, frenk üzümü ve ahududu ekledik. "
+    "‘’Süper gıdalar’’ olarak adlandırılan değerli meyveleri sizlerle buluşturmaktan çok mutluyuz."
+)
+set_font(slide.placeholders[1].text_frame, 'Poppins Regular', Pt(18), color=RGBColor(0x4A, 0x4A, 0x4A))
+
+# Add 'Nasıl Üretiyoruz?' Slide
+slide = prs.slides.add_slide(content_slide_layout)
+title = slide.shapes.title
+title.text = "Nasıl Üretiyoruz?"
+set_font(title.text_frame, 'Poppins Bold', Pt(32), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+content = slide.placeholders[1].text = (
+    "Uzman Kadromuz: Alova Farm olarak, uzman danışmanlarımız ve deneyimli ziraat mühendislerimizle birlikte, sürekli eğitim verdiğimiz tarla çalışanlarımızla üretim yapıyoruz. "
+    "Üst bilgi birikimi ve teknolojiyi harmanlayarak, en yüksek kalitede ürünler yetiştiriyoruz.\n\n"
+    "Topraksız Üretim ve Çevre Dostu Yöntemler: İstenmeyen otlarla mücadelede, sağlığa zararlı ilaçlama yapmamak adına, tüm üretim alanlarını filmlerle kaplayarak topraksız üretim yapıyoruz. "
+    "Bu uygulamanın en önemli noktası, orman meyvelerini toprak koşullarından bağımsız olarak, uygun iklime sahip her yerde üretebilmektir.\n\n"
+    "Modern ve Otomasyona Dayalı Tarım Sistemleri: Çiftliğimizde uyguladığımız modern ve otomasyona dayalı tarım sistemleri ile yaklaşık 40.000 adet yaban mersini saksımızı dijital kontrolle yönetiyoruz. "
+    "Her bir saksının talep ettiği oranda su ve gübre ile beslenmesini sağlayarak, toprağı ve suyu koruyor, sürdürülebilirlik ilkelerine uygun üretim yapıyoruz."
+)
+set_font(slide.placeholders[1].text_frame, 'Poppins Regular', Pt(18), color=RGBColor(0x4A, 0x4A, 0x4A))
+
+# Add 'Nerede Üretiyoruz?' Slide
+slide = prs.slides.add_slide(content_slide_layout)
+title = slide.shapes.title
+title.text = "Nerede Üretiyoruz?"
+set_font(title.text_frame, 'Poppins Bold', Pt(32), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+content = slide.placeholders[1].text = (
+    "Yalova Altınova'nın Bereketli Toprakları: Alova Farm, Yalova’nın Altınova bölgesinde yer almaktadır. İstanbul’un merkezine 1 saat mesafede bulunan bu bölge, tarihi İpek Yolu ticaretinde çok önemli bir konuma sahiptir. "
+    "Vadimizin üzerindeki 150 rakımlı tepenin zirvesinde Çoban Kale konuşlanmıştır. Bu kale, Roma, Bizans ve Osmanlı dönemlerinde Anadolu içlerine giden ticaret yolunu kontrol eden bir güvenlik kalesi olarak kullanılmıştır.\n\n"
+    "Tarihten Günümüze Uzanan Bereket: Biz de her gün, Çoban Kale’nin bizi seyrettiği ve koruduğuna inanarak, yeni bir İpek Yolu başarısı elde etmek üzere çalışıyoruz. Amacımız, tüketicileri doğal orman meyveleriyle kaplı coğrafyanın bereketi ve lezzetiyle buluşturmaktır."
+)
+set_font(slide.placeholders[1].text_frame, 'Poppins Regular', Pt(18), color=RGBColor(0x4A, 0x4A, 0x4A))
+
+# Add 'Ürünlerimiz' Slide
+slide = prs.slides.add_slide(content_slide_layout)
+title = slide.shapes.title
+title.text = "Ürünlerimiz"
+set_font(title.text_frame, 'Poppins Bold', Pt(32), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+content = slide.placeholders[1].text = (
+    "Ahududu (Raspberry): Ahududu, zengin antioksidan içeriği ve tatlı lezzeti ile bilinir. Sağlık açısından birçok faydası olan ahududu, özellikle bağışıklık sistemini güçlendirir ve cilt sağlığını destekler.\n\n"
+    "Böğürtlen (Blackberry): Böğürtlen, yüksek C vitamini içeriği ve antioksidan özellikleriyle dikkat çeker. Kalp sağlığını korur, sindirimi destekler ve hücre yenilenmesine yardımcı olur.\n\n"
+    "Yaban Mersini (Blueberry): Yaban mersini, beyin fonksiyonlarını destekleyen ve yaşlanma karşıtı özelliklere sahip bir süper meyvedir. Antioksidanlar ve vitaminlerle doludur.\n\n"
+    "Frenk Üzümü (Currant): Frenk üzümü, zengin besin değeri ve sağlık faydaları ile bilinir. Özellikle bağışıklık sistemini destekler ve enerji verir."
+)
+set_font(slide.placeholders[1].text_frame, 'Poppins Regular', Pt(18), color=RGBColor(0x4A, 0x4A, 0x4A))
+
+# Add 'İletişim Bilgileri' Slide
+slide = prs.slides.add_slide(content_slide_layout)
+title = slide.shapes.title
+title.text = "İletişim Bilgileri"
+set_font(title.text_frame, 'Poppins Bold', Pt(32), bold=True, color=RGBColor(0x2E, 0x31, 0x92))
+content = slide.placeholders[1].text = (
+    "Adres: Alova Farm, Yalova Altınova, Çobankale Mevkii\n"
+    "Telefon: +90 555 123 4567\n"
+    "E-posta: info@alovafarm.com\n"
+    "Web Sitesi: www.alovafarm.com\n"
+    "Instagram: @alova_farm"
+)
+set_font(slide.placeholders[1].text_frame, 'Poppins Regular', Pt(18), color=RGBColor(0x4A, 0x4A, 0x4A))
+
+# Save the final presentation
+final_pptx_file = "/mnt/data/Alova_Farm_Final_Katalog.pptx"
+prs.save(final_pptx_file)
+
+final_pptx_file &#8203;:citation[oaicite:0]{index=0}&#8203;
